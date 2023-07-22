@@ -2,9 +2,6 @@
 
 <img src="https://testedoces.ericksondev.tech/assets/logo.jpeg" alt="TesteDoces Website" width="250">
 
-Este é o repositório do projeto TesteDoces, um site desenvolvido com Angular que permite testar diferentes tipos de doces e exibir informações sobre eles. O site se conecta a uma API hospedada em https://ericksondev.tech/testedocesapi/api/ para obter os dados necessários.
-
-
 Este é o repositório do projeto TesteDoces, um site desenvolvido com Angular que possui funcionalidades administrativas voltadas para o gerenciamento de doces. O sistema se conecta a uma API hospedada em https://ericksondev.tech/testedocesapi/api/ para realizar as operações de CRUD (Create, Read, Update, Delete) em diversas entidades relacionadas ao negócio. A autenticação no sistema é feita utilizando JWT (JSON Web Tokens) para garantir a segurança das informações.
 
 ## Funcionalidades Administrativas
