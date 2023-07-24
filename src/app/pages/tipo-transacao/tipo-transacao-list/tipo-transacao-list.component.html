@@ -1,0 +1,85 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{ titulo }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-bred-crumb [items]="[{ text: titulo }]"></app-bred-crumb>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Nome</th>
+                  <th style="width: 40px">Operações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let transacao of tiposTransacoes">
+                  <td>{{ transacao.id }}</td>
+                  <td>
+                    <span class="badge {{ transacao.cor }}">
+                      {{ transacao.nome }}
+                    </span>
+                  </td>
+                  <td>
+                    <a
+                      (click)="edit(transacao.id)"
+                      routerLinkActive="router-link-active"
+                      class="btn btn-xs btn-warning"
+                      ><i class="fa fa-edit"></i
+                    ></a>
+                    <a
+                      (click)="remove(transacao.id)"
+                      class="ml-2 btn btn-xs btn-danger"
+                      ><i class="fa fa-close"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              <!-- <button class="bton btn-primary" [disabled]="currentPage === 1" (click)="onPageChange(1)">Primeira</button>
+                <button class="bton btn-primary" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Anterior</button> -->
+
+              <ng-container *ngFor="let page of totalPagesArray">
+                <button
+                  class="page-link"
+                  [disabled]="currentPage === page"
+                  (click)="onPageChange(page)"
+                >
+                  {{ page }}
+                </button>
+              </ng-container>
+
+              <!-- <button class="bton btn-primary" [disabled]="currentPage === lastPage" (click)="onPageChange(currentPage + 1)">Próxima</button>
+                <button class="bton btn-primary" [disabled]="currentPage === lastPage" (click)="onPageChange(lastPage)">Última</button> -->
+            </ul>
+            <div class="pagination"></div>
+            <div class="col-md-2">
+              <a
+                routerLink="/tipotransacao/create"
+                class="btn btn-xs btn-primary"
+                >Adicionar</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

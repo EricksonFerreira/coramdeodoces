@@ -1,0 +1,93 @@
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>{{ titulo }}</h1>
+        </div>
+        <div class="col-sm-6">
+          <app-bred-crumb [items]="[{ text: titulo }]"></app-bred-crumb>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="table">
+
+                <table class="table-responsive table-sm table-bordered">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Produto</th>
+                      <th>Quantidade</th>
+                      <th>Preço</th>
+                      <th>Comprador</th>
+                      <th>Tipo Transação</th>
+                      <th>Tipo Pagamento</th>
+                      <th>Vendedor</th>
+                      <th style="width: 40px">Operações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let venda of vendasEmpresa">
+                      <td>{{ venda.id }}</td>
+                      <td>{{ venda.produto }}</td>
+                      <td>{{ venda.quantidade }}</td>
+                      <td>{{ venda.valor | valorBrasileiro}}</td>
+                    <td>{{ venda.cliente }}</td>
+                    <td>
+                      <span [class]="'badge ' + venda.tipo_acao_cor">{{ venda.tipo_acao }}</span>
+                    </td>
+                    <td>
+                      <span [class]="'badge ' + venda.tipo_pagamento_cor">{{ venda.tipo_pagamento }}</span>
+                    </td>
+                    <td>{{ venda.vendedor }}</td>
+                    <td>
+                      <a
+                      (click)="edit(venda.id)"
+                      routerLinkActive="router-link-active"
+                      class="btn btn-xs btn-warning"
+                      ><i class="fa fa-edit"></i
+                        ></a>
+                        <a
+                        (click)="remove(venda.id)"
+                        class="ml-2 btn btn-xs btn-danger"
+                        ><i class="fa fa-close"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-right">
+                <!-- <button class="bton btn-primary" [disabled]="currentPage === 1" (click)="onPageChange(1)">Primeira</button>
+                <button class="bton btn-primary" [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)">Anterior</button> -->
+
+                <ng-container *ngFor="let page of totalPagesArray">
+                  <button class="page-link" [disabled]="currentPage === page" (click)="onPageChange(page)">{{ page }}</button>
+                </ng-container>
+
+                <!-- <button class="bton btn-primary" [disabled]="currentPage === lastPage" (click)="onPageChange(currentPage + 1)">Próxima</button>
+                <button class="bton btn-primary" [disabled]="currentPage === lastPage" (click)="onPageChange(lastPage)">Última</button> -->
+              </ul>
+              <div class="pagination">
+              </div>
+              <div class="col-md-2">
+                <a routerLink="/venda/empresa/create" class="btn btn-xs btn-primary"
+                  >Adicionar</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

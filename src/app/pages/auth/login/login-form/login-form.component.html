@@ -1,0 +1,63 @@
+<div class="login-page">
+  <div class="login-box">
+    <div class="img"         style="text-align: center;"    >
+        <img
+        src="./../../../../assets/logo.jpeg"
+        alt="AdminLTE Logo"
+        class="brand-image img-circle elevation-3"
+        style="opacity: 0.8;width: 5em;text-align: center;"
+      />
+    </div>
+    <div class="login-logo">
+      <b>Coram Deo Doces</b>
+    </div>
+
+    <div class="card">
+      <div class="card-body login-card-body">
+        <form [formGroup]="signinForm" (ngSubmit)="loginUser()">
+          <div class="input-group mb-3">
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Digite o seu e-mail"
+              required/>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Digite a sua senha"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+            </div>
+
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">
+                Entrar
+              </button>
+            </div>
+          </div>
+        </form>
+        <!-- <p class="mb-0">
+          <a  routerLink="/auth/register" class="text-center"
+            >Cadastre-se</a
+          >
+        </p> -->
+      </div>
+    </div>
+  </div>
+</div>

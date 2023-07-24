@@ -1,0 +1,78 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{ titulo }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-bred-crumb [items]="[{ link:'/produtos',text: 'Produto' },{ text: titulo }]"></app-bred-crumb>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="formulario" (submit)="submitForm()">
+          <div class="card">
+            <div class="card-header">Informações sobre do produto</div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <label for="nome">Nome</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    formControlName="nome"
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="description">Tipos Produtos</label>
+                  <select class="form-control" formControlName="tipo_id">
+                    <option
+                      *ngFor="let tipoProduto of tiposProdutos"
+                      [value]="tipoProduto.id"
+                    >
+                      {{ tipoProduto.nome }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <label for="nome">Historico de Preços</label>
+                  <table class="table table-sm table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Ativo</th>
+                        <th scope="col">Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let historico of historicoPrecos">
+                        <td>{{historico.valor | valorBrasileiro}}</td>
+                        <td>
+                          <span class="badge badge-pill badge-success" *ngIf="historico.ativo">S</span>
+                          <span class="badge badge-pill badge-danger" *ngIf="!historico.ativo">N</span>
+                        </td>
+                        <td>{{historico.created_at}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-sm float-right mt-3">
+            {{ botaoTexto }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

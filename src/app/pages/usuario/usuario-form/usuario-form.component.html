@@ -1,0 +1,71 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{ titulo }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-bred-crumb
+          [items]="[
+            { text: 'Usuários', link: '/usuários' },
+            { text: titulo }
+          ]"
+        ></app-bred-crumb>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="formulario" (ngSubmit)="submitForm()">
+          <div class="card">
+            <div class="card-header">Informações sobre o usuário</div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label>Nome</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Digite o nome"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label>E-mail</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    formControlName="email"
+                    placeholder="Digite o e-mail"
+                    required
+                  />
+                  </div>
+
+                  <div class="form-group col-md-4">
+                  <label>Senha</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                    placeholder="Digite a senha"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-block btn-primary">
+              {{botaoTexto}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

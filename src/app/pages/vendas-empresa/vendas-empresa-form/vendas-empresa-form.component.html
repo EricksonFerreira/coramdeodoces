@@ -1,0 +1,161 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{ titulo }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-bred-crumb
+          [items]="[
+            { text: 'Venda Empresa', link: '/venda/empresa' },
+            { text: titulo }
+          ]"
+        ></app-bred-crumb>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="formulario" (submit)="submitForm()">
+          <div class="card">
+            <div class="card-header">Informações da venda</div>
+            <div class="card-body">
+              <div class="form-row">
+                <!-- <div class="form-group col-md-8">
+                    <label for="nome">Nome</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      formControlName="nome"
+                    />
+                  </div> -->
+                <div class="form-group col-md-12">
+                  <label for="tipo_acao_id">Tipo Transação</label>
+                  <select
+                    #meuSelectElement
+                    (change)="verificarEntrada(meuSelectElement)"
+                    class="form-control"
+                    formControlName="tipo_acao_id"
+                  >
+                    <option
+                      *ngFor="let transacao of tiposAcao"
+                      [value]="transacao.id"
+                      [selected]="transacao.id === 2"
+                    >
+                      {{ transacao.nome }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="!isEntrada" class="form-group col-md-4">
+                  <label for="produto_id">Produtos</label>
+                  <select class="form-control" formControlName="produto_id">
+                    <option
+                      *ngFor="let produto of produtos"
+                      [value]="produto.id"
+                    >
+                      {{ produto.nome }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="!isEntrada" class="form-group col-md-2">
+                  <label for="quantidade">Quantidade</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="quantidade"
+                    formControlName="quantidade"
+                  />
+                </div>
+                <div *ngIf="isEntrada" class="form-group col-md-3">
+                  <label for="valor">Valor</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="valor"
+                    formControlName="valor"
+                    valorMask
+                  />
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="cliente_id">Cliente</label>
+                  <select class="form-control" formControlName="cliente_id">
+                    <option
+                      *ngFor="let cliente of clientes"
+                      [value]="cliente.id"
+                    >
+                      {{ cliente.nome }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="isEntrada" class="form-group col-md-4">
+                  <label for="tipo_pagamento_id">Tipos Pagamento</label>
+                  <select
+                    class="form-control"
+                    formControlName="tipo_pagamento_id"
+                    [(value)]="tipo_pagamento_selected"
+                  >
+                    <option
+                      *ngFor="let transacao of tiposTransacao"
+                      [value]="transacao.id"
+                    >
+                      {{ transacao.nome }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="data">Data</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    formControlName="data"
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="vendedor_id">Vendedores</label>
+                  <select class="form-control" formControlName="vendedor_id">
+                    <option
+                      *ngFor="let vendedor of vendedores"
+                      [value]="vendedor.id"
+                    >
+                      {{ vendedor.nome }}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="!isEntrada" class="form-group col-md-4">
+                  <label for="pagamento_efetuado">Pagamento Efetuado</label>
+                  <select
+                    class="form-control"
+                    formControlName="pagamento_efetuado"
+                    required
+                    [value]="pagamento_efetuado"
+                  >
+                    <option value="S">Sim</option>
+                    <option value="N">Não</option>
+                  </select>
+                </div>
+                <input
+                  type="hidden"
+                  formControlName="tipo_venda_id"
+                  value="2"
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-sm float-right mt-3"
+            [disabled]="!formulario.valid"
+          >
+            {{ botaoTexto }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

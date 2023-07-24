@@ -1,0 +1,43 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>{{ titulo }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <app-bred-crumb [items]="[{text:'Vendedores',link:'/vendedores'},{ text: titulo }]"></app-bred-crumb>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="formulario" (submit)="submitForm()">
+          <div class="card">
+            <div class="card-header">Informações sobre o vendedor</div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <label for="nome">Nome</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    formControlName="nome"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-sm float-right mt-3">
+            {{ botaoTexto }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
